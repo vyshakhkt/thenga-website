@@ -16,25 +16,24 @@
   </nav>
 </header>
 
-<section class="products">
-  <div class="product">
-    <h3>Product 1</h3>
-    <p>₹999</p>
-    <button>Add to Cart</button>
-  </div>
+<section class="products" id="productList"></section>
 
-  <div class="product">
-    <h3>Product 2</h3>
-    <p>₹1499</p>
-    <button>Add to Cart</button>
-  </div>
+<script>
+  let products = JSON.parse(localStorage.getItem("products")) || [];
+  const list = document.getElementById("productList");
 
-  <div class="product">
-    <h3>Product 3</h3>
-    <p>₹1999</p>
-    <button>Add to Cart</button>
-  </div>
-</section>
+  products.forEach(p => {
+    const div = document.createElement("div");
+    div.className = "product";
+    div.innerHTML = `
+      <h3>${p.name}</h3>
+      <p>₹${p.price}</p>
+      <button>Add to Cart</button>
+    `;
+    list.appendChild(div);
+  });
+</script>
+
 
 <footer>
   <p>© 2026 My E-Commerce</p>
@@ -42,3 +41,4 @@
 
 </body>
 </html>
+
